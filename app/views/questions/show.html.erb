@@ -1,19 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @question.user %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @question.body %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+<div class="container">
+  <header class="jumbotron my-4">
+    <h2 class="card-title"><%= @question.title %></h2>
+  </header>
+  <div class="card-body">
+    内容：<br>
+    <%= @question.body %>
+  </div>
+  <%= link_to 'Edit', edit_question_path(@question) %> |
+  <%= link_to 'Back', questions_path %>
+</div>

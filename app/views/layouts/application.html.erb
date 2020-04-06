@@ -1,17 +1,57 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Wisdom</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+<head>
+  <title>QaSite</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+ 
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+ 
+<body>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <% if user_signed_in? %>
+      <a class="navbar-brand" href="#">111Start Bootstrap</a>
+    <% else %>
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+    <% end %>
+ 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <% if user_signed_in? %>
+            <%= link_to "質問", "/questions", class: "nav-link" %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <% if user_signed_in? %>
+            <a><%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", :method => :delete %></a>
+          <% else %>
+            <%= link_to "ログイン", "/users/sign_in", class: "nav-link" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--ここから-->
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<!--ここまで-->
+ 
+<%= yield %>
+ 
+ 
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  </div>
+  <!-- /.container -->
+</footer>
+</body>
 </html>

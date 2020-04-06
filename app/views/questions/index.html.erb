@@ -1,35 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Questions</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="container">
+  <header class="jumbotron my-4">
+    <h1 class="display-3">wisdom!</h1>
+    <p class="lead">質問したり回答できたりします！</p>
+    <%= link_to '質問したり回答できたりします', 'users/sign_up', class: 'btn btn-primary btn-lg'%>
+  </header>
+</div>
+  <div class="row text-center">
     <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.user %></td>
-        <td><%= question.title %></td>
-        <td><%= question.body %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card h-100">
+        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+        <div class="card-body">
+          <h4 class="card-title"><%= question.title %></h4>
+          <p class="card-text"><%= question.body %></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to '詳細', question %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete%>
-<%end%>
-<br>
-<%= link_to 'New Question', new_question_path %>
+    </div>
+  </div>
+</div>
