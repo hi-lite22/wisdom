@@ -4,11 +4,16 @@ class QuestionsController < ApplicationController
   @@user_type = nil
  
   def index
+    @q = Question.ransack(params[:q])
     @@user_type = current_user.role
     if @@user_type == '質問者'
       @questions = current_user.questions
     else
-      @questions = Question.all
+      if params[:q]
+        @questions = @q.result(distinct: true)
+      else
+        @questions = Question.all
+      end
     end
   end
  
@@ -16,12 +21,16 @@ class QuestionsController < ApplicationController
   end
  
   def new
+    # 新規作成画面でタグを表示するため
+    @tags = Tag.all
     @question = Question.new
   end
  
   def edit
+    # 修正画面でタグを表示するため
+    @tags = Tag.all
   end
-  
+ 
   def create
     @question = current_user.questions.build(question_params)
     respond_to do |format|
@@ -63,6 +72,6 @@ class QuestionsController < ApplicationController
  
   def question_params
     # ここを修正
-    params.require(:question).permit(:user_id, :title, :body, :best_answer_id)
+    params.require(:question).permit(:user_id, :title, :body, :best_answer_id, {:tag_ids => []})
   end
 end

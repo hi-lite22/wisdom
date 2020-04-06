@@ -8,6 +8,11 @@
   </div>
   <header class="jumbotron my-4">
     <h2 class="card-title"><%= @question.title %></h2>
+    <!--ここにボタン形式でタグを表示-->
+    <% @question.tags.each do |tag| %>
+      <button class="btn btn-info"><%= tag.name %></button>
+    <% end %>
+    <!--ここまで-->    
     <% if current_user.role == '回答者' %>
       <%= link_to '回答する！', "/answers/new/#{@question.id}", class: 'btn btn-primary btn-lg' %>
     <% end %>

@@ -1,4 +1,3 @@
-# ユーザーのデータ
 User.create(
     [
         {name: '鈴木太郎', email: 'sitsumon1@gmail.com', role: '質問者', password: '11111111', password_confirmation: '11111111'},
@@ -43,3 +42,15 @@ Reaction.create(
         {body: '東京ばな奈いいですね', user_id: 1, answer_id: 1},
         {body: '猫いいですね！', user_id: 1, answer_id: 4},
         {body: '矢場とんいいですね！', user_id: 3, answer_id: 7}])
+ 
+ 
+Tag.create(
+    [
+        {name: '動物'},
+        {name: 'スポーツ'},
+        {name: 'ご飯'},
+        {name: 'その他'}])
+ 
+# activeadmin(管理画面)に入るためのユーザーです。ターミナルで「rails g active_admin:install」を実行後
+# 作成されます。メールアドレスとパスワードはわかりやすく設定していますが、必要であれば変えてください。
+AdminUser.create!(email: 'admin@gmail.com', password: '11111111', password_confirmation: '11111111') if Rails.env.development?
