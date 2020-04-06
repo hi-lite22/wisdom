@@ -1,24 +1,26 @@
 <div class="container">
   <header class="jumbotron my-4">
-    <h1 class="display-3">wisdom!</h1>
-    <p class="lead">質問したり回答できたりします！</p>
-    <%= link_to '質問したり回答できたりします', 'users/sign_up', class: 'btn btn-primary btn-lg'%>
+    <h1 class="display-3">質問一覧</h1>
+    <!--質問者のみ質問ができるように修正-->
+    <% if current_user.role == '質問者' %>
+      <%= link_to '質問する！', new_question_path, class: 'btn btn-primary btn-lg' %>
+    <% end %>
   </header>
-</div>
   <div class="row text-center">
     <% @questions.each do |question| %>
-    <div class="col-lg-3 col-md-6 mb-4">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-        <div class="card-body">
-          <h4 class="card-title"><%= question.title %></h4>
-          <p class="card-text"><%= question.body %></p>
-        </div>
-        <div class="card-footer">
-          <%= link_to '詳細', question %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+          <div class="card-body">
+            <h4 class="card-title"><%= question.title %></h4>
+            <p class="card-text"><%= question.body %></p>
+          </div>
+          <div class="card-footer">
+            <%= link_to '詳細', question %>
+          </div>
         </div>
       </div>
     <% end %>
-    </div>
+ 
   </div>
 </div>

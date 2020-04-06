@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>QaSite</title>
@@ -7,25 +8,25 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
- 
 <body>
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <% if user_signed_in? %>
-      <a class="navbar-brand" href="#">111Start Bootstrap</a>
-    <% else %>
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
-    <% end %>
- 
+    <a class="navbar-brand" href="#">Start Bootstrap</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <span class="nav-link">ログイン中:<%= current_user.name %></span>
+          </li>
+        <% end %>
         <li class="nav-item">
-          <% if user_signed_in? %>
+          <% if user_signed_in? && current_user.role == '質問者' %>
             <%= link_to "質問", "/questions", class: "nav-link" %>
+          <% elsif user_signed_in? && current_user.role == '回答者' %>
+            <%= link_to "回答", "/questions", class: "nav-link" %>
           <% end %>
         </li>
         <li class="nav-item">
@@ -39,19 +40,13 @@
     </div>
   </div>
 </nav>
-<!--ここから-->
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<!--ここまで-->
- 
 <%= yield %>
- 
- 
 <footer class="py-5 bg-dark">
   <div class="container">
     <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
   </div>
-  <!-- /.container -->
 </footer>
 </body>
 </html>

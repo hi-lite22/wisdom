@@ -1,3 +1,18 @@
-// Place all the styles related to the Questions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.user_color {
+  background-color: blue;
+  color: white;
+}
+
+.ba-parent {
+  position: relative;
+  .ba-child {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+  }
+}
+
+.best-answer{
+  background-color: red;
+  color: white;
+}

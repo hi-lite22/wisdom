@@ -1,9 +1,15 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  @@user_type = nil
  
   def index
-    @questions = current_user.questions
+    @@user_type = current_user.role
+    if @@user_type == '質問者'
+      @questions = current_user.questions
+    else
+      @questions = Question.all
+    end
   end
  
   def show
@@ -15,7 +21,7 @@ class QuestionsController < ApplicationController
  
   def edit
   end
- 
+  
   def create
     @question = current_user.questions.build(question_params)
     respond_to do |format|
@@ -56,6 +62,7 @@ class QuestionsController < ApplicationController
   end
  
   def question_params
-    params.require(:question).permit(:user_id, :title, :body)
+    # ここを修正
+    params.require(:question).permit(:user_id, :title, :body, :best_answer_id)
   end
 end
