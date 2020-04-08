@@ -1,3 +1,11 @@
-// Place all the styles related to the homepage controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.bc-image {
+  background-image: url("b-image.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} 
+
+footer {
+margin-top: auto;
+}

@@ -8,7 +8,6 @@
  
   <!--ここから-->
   <%= search_form_for @q do |f| %>
-    <%= f.label :title_cont %>
     <%= f.search_field :title_cont %>
     <%= f.submit %>
   <% end %>
@@ -18,7 +17,6 @@
     <% @questions.each do |question| %>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
           <div class="card-body">
             <h4 class="card-title"><%= question.title %></h4>
             <p class="card-text"><%= question.body %></p>
